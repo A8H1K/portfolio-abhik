@@ -22,4 +22,5 @@ urlpatterns = [
 
 	path('account/', views.userAccount, name="account"),
 	path('update_profile/', views.updateProfile, name="update_profile"),
+	path('404', views.some404, name='404')
 ]

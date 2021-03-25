@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .decorators import *
+from django.http import Http404
 
 from .forms import PostForm, CustomUserCreationForm, ProfileForm, UserForm
 from .filters import PostFilter
@@ -17,6 +18,17 @@ from .filters import PostFilter
 from .models import *
 
 # Create your views here.
+
+def some404(request):
+    return redirect('templates/base/404.html')
+
+def handler404(request, exception):
+     data = {}
+     return redirect('templates/base/404.html',data)
+
+def handler500(request):
+     data = {}
+     return redirect('templates/base/404.html',data)
 
 def home(request):
 	posts = Post.objects.filter(active=True, featured=True)[0:3]
@@ -121,7 +133,7 @@ def sendEmail(request):
 			request.POST['subject'],
 			template,
 			settings.EMAIL_HOST_USER,
-			['dennisivy11@gmail.com']
+			['abhikchoudhary2007@gmail.com']
 			)
 
 		email.fail_silently=False
@@ -144,7 +156,7 @@ def loginPage(request):
 		except:
 			messages.error(request, 'User with this email does not exists')
 			return redirect('login')
-			
+
 		if user is not None:
 			login(request, user)
 			return redirect('home')
