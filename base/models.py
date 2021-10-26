@@ -34,7 +34,6 @@ class Tag(models.Model):
 class Post(models.Model):
 	headline = models.CharField(max_length=200)
 	sub_headline = models.CharField(max_length=200, null=True, blank=True)
-	thumbnail = models.ImageField(null=True, blank=True, upload_to="images", default="/images/placeholder.png")
 	body = RichTextUploadingField(null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	active = models.BooleanField(default=False)
@@ -54,7 +53,7 @@ class Post(models.Model):
 			count = 1
 			while has_slug:
 				count += 1
-				slug = slugify(self.headline) + '-' + str(count) 
+				slug = slugify(self.headline) + '-' + str(count)
 				has_slug = Post.objects.filter(slug=slug).exists()
 
 			self.slug = slug
@@ -75,4 +74,3 @@ class PostComment(models.Model):
 	def created_dynamic(self):
 		now = timezone.now()
 		return now
-	

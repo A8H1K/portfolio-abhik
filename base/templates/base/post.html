@@ -60,6 +60,8 @@
 	}
 </style>
 
+
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script></div>
 <div class="post-container">
 
 	<a class="btn btn-sm btn-primary" href="{% url 'posts' %}">&laquo Back to Posts</a>
@@ -69,7 +71,6 @@
 		 <a class="btn btn-sm btn-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
 	{% endif %}
 
-	<img class="featured_image" src="{{post.thumbnail.url}}">
 
 	{% for tag in post.tags.all %}
 		<span class="tag">{{tag}}</span>
@@ -87,7 +88,7 @@
 		<hr>
 		<!--
 			- Not logged in, output form and say "Register to comment and give room for a message"
-			- When given username 
+			- When given username
 		-->
 		{% if request.user.is_authenticated %}
 		<form action="" method="POST">

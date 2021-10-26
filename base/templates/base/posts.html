@@ -21,7 +21,7 @@
 	{% endif %}
 	<form id="searchForm" method="GET">
 		{{myFilter.form|crispy}}
-		
+
 		<input class="btn btn-primary" type="submit" value="search">
 	</form>
 	<br>
@@ -53,7 +53,7 @@
 	</div>
 
 	<div class="row">
-		
+
 		{% if posts.has_other_pages %}
 
 			<ul class="pagination">
@@ -71,7 +71,7 @@
 					{% else %}
 						<li class="page-item"><a data-page="{{i}}" href="?page={{i}}" class="page-link">{{i}}</a></li>
 					{% endif %}
-					
+
 				{% endfor %}
 
 

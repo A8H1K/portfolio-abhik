@@ -18,9 +18,12 @@ from .filters import PostFilter
 from .models import *
 
 # Create your views here.
+def home(request):
+	return render(request, 'base/index.html')
 
 def some404(request):
-    return redirect('templates/base/404.html')
+    data = {}
+    return redirect('templates/base/404.html',404)
 
 def handler404(request, exception):
      data = {}
@@ -29,12 +32,6 @@ def handler404(request, exception):
 def handler500(request):
      data = {}
      return redirect('templates/base/404.html',data)
-
-def home(request):
-	posts = Post.objects.filter(active=True, featured=True)[0:3]
-
-	context = {'posts':posts}
-	return render(request, 'base/index.html', context)
 
 def posts(request):
 	posts = Post.objects.filter(active=True)
